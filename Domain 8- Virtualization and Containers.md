@@ -155,7 +155,9 @@ Regardless of the technology platform, container security includes:
 
 * *Properly securing the image repository.* The image repository should be in a secure location with appropriate access controls configured. This is to both to prevent loss or unapproved modification of container images and definition files, as well as leaks of sensitive data through unapproved access to the files. Containers run so easily that it's also important that images are only able to deploy in the right security context.
 
-* *Building security into the tasks/code running inside the container.* It's still possible to run vulnerable software inside a container, and in some cases this could expose the shared operating system or data from other containers. For example, it is possible to configure some containers to allow root file system access, not merely access to the container's data on the file system. Allowing too much network access is also a possibility. These are all specific to the particular container platform and thus requires securely configuring both the container environment *and* the images/container configurations themselves.
+* *Building security into the tasks/code running inside the container.* Building security into the tasks/code running inside the container. It's still possible to run vulnerable software inside a container, allowing a container to be exploited or expose the shared operating system and data from other containers. It is also possible to improperly allow containers root file system access, not merely access to the container's data on the file system.  
+
+* *Segregate container groups.* Leverage network security to isolate containers into logical groups, and disallow other access. Allowing too much network access permits containers to inspect or attack other containers, or leak information. Network controls are specific to the particular container platform and thus requires securely configuring both the container environment and the images/container configurations themselves.
 
 Containers are rapidly evolving, which complicates some aspects of security, but doesn't mean that they are inherently insecure.
 
@@ -196,8 +198,11 @@ One key area to secure is which images/tasks/code are allowed into a particular 
 	* Properly configure virtualization services in accordance with the guidance from the cloud provider and other industry best practices.
 		* The bulk of fundamental virtualization security falls on the cloud provider, which is why most of the security recommendations for cloud consumers is covered in the other domains of this Guidance.
 	* For containers:
-		* Understand the security isolation capabilities of the chosen container platform and underlying operating system and choose the appropriate configuration.
+		* Use hardened and optimized kernel/machine images specific to your cloud platform.  
+		* Understand the security isolation capabilities of the chosen container platform to protect the underlying operating system.
 		* Use physical or virtual machines to provide container isolation and group containers of the same security contexts on the same physical and/or virtual hosts.
-		* Ensure that only approved, known, secure container images or code can be deployed.
+		* Ensure that only approved, known, secure container images or code can be deployed, and deploy with appropriate configurations.
 		* Appropriately secure the container orchestration/management and scheduler software stack(s).
 		* Implement appropriate role-based access controls and strong authentication for all container and repository management.
+		* Implement role-based access controls for container runtime permissions, ensuring they do not run with root user credentials. 
+		* Leverage network security to isolate container groups with no logical relationship.
