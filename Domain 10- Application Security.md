@@ -107,6 +107,8 @@ There are multiple kinds of application security tests that could be potentially
 
 * *Dynamic Application Security Testing (DAST):* DAST tests running applications and includes tests such as web vulnerability testing and fuzzing. Due to the terms of service with the cloud provider DAST may be limited and/or require pre-testing permission from the provider. With cloud and automated deployment pipelines it is possible to stand up entirely functional test environments using infrastructure as code and then perform deep assessments before approving changes for production. 
 
+* *Composition Analysis:* Scan application stacks for known vulnerabilities. Composition Analysis tools check software build manifests for software versions with known defects. Given the prevalence of open source software in most application development programs, regular scans to detect both back dated software versions or known vulnerable distributions helps improve security and stability of applications. 
+
 #### Impact on vulnerability assessment
 
 Vulnerability assessment can be integrated into CI/CD pipelines and implemented in cloud fairly easily, but it nearly always requires compliance with the provider's terms of service. 
